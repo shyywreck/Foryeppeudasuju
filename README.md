@@ -1,1 +1,175 @@
 # Foryeppeudasuju
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 🐾</title>
+<style>
+body {
+margin: 0;
+background: #ffe6f0;
+font-family: 'Segoe UI', sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+overflow: hidden;
+}
+
+.envelope {
+width: 300px;
+height: 220px;
+background: #fff;
+border: 2px solid #f6a6b2;
+border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+position: relative;
+cursor: pointer;
+transition: transform 0.4s ease;
+}
+
+.envelope:hover {
+transform: scale(1.03);
+}
+
+.cat {
+position: absolute;
+top: -70px;
+left: 50%;
+transform: translateX(-50%);
+width: 80px;
+height: 80px;
+}
+
+.cat img {
+width: 100%;
+border-radius: 50%;
+border: 3px solid #fff0f5;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.open {
+display: none;
+position: absolute;
+top: 10%;
+left: 50%;
+transform: translateX(-50%);
+width: 260px;
+background: #fff0f9;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+font-size: 16px;
+line-height: 1.6;
+color: #444;
+z-index: 10;
+animation: slideup 0.5s ease;
+}
+
+@keyframes slideup {
+from { opacity: 0; transform: translate(-50%, 20%); }
+to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.heart {
+position: absolute;
+top: 20px;
+right: 20px;
+font-size: 24px;
+color: #ff6b81;
+animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+0%, 100% { transform: scale(1); }
+50% { transform: scale(1.3); }
+}
+
+.text-hint {
+position: absolute;
+bottom: 10px;
+width: 100%;
+text-align: center;
+font-size: 12px;
+color: #777;
+}
+
+.floating-heart {
+position: absolute;
+bottom: 0;
+width: 20px;
+height: 20px;
+background: red;
+clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 50% 80%, 15% 100%, 0% 35%);
+animation: floatUp 4s infinite;
+opacity: 0.8;
+}
+
+@keyframes floatUp {
+0% {
+transform: translateY(0) scale(1);
+opacity: 1;
+}
+100% {
+transform: translateY(-300px) scale(1.5);
+opacity: 0;
+}
+}
+
+.typed {
+white-space: pre-wrap;
+overflow: hidden;
+border-right: 2px solid #f777a8;
+animation: typing 3s steps(50, end), blink 0.6s step-end infinite;
+}
+
+@keyframes typing {
+from { width: 0 }
+to { width: 100% }
+}
+
+@keyframes blink {
+50% { border-color: transparent }
+}
+</style>
+</head>
+<body>
+
+<!-- Envelope -->
+<div class="envelope" onclick="openLetter()">
+<div class="cat">
+<img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="Cute Cat">
+</div>
+<div class="heart">❤️</div>
+<div class="text-hint">Click to open the letter</div>
+<div class="open" id="letter">
+<div class="typed" id="typedText"></div>
+</div>
+</div>
+
+<!-- Floating Hearts -->
+<div class="floating-heart" style="left:20%; animation-delay: 0s;"></div>
+<div class="floating-heart" style="left:50%; animation-delay: 1s;"></div>
+<div class="floating-heart" style="left:80%; animation-delay: 2s;"></div>
+
+<!-- Optional background music -->
+<audio id="bgm" src="https://www.bensound.com/bensound-music/bensound-lovely.mp3" autoplay loop></audio>
+
+<script>
+const message = `Hey you 💌\n\nWe met in a game, but you feel like a dream. Your eyes? The cutest I’ve ever seen. You’re not just pretty—you’re everything. I don’t know how, but I just love your vibe, your smile, and your love for cats.\n\nI don’t know where this goes, but I’d love to find out… with you 🐾\n\n– From someone who’s lowkey falling for you 🎮💘`;
+
+function openLetter() {
+document.getElementById('letter').style.display = 'block';
+typeWriter(message, 0);
+}
+
+function typeWriter(text, i) {
+if (i < text.length) {
+document.getElementById('typedText').textContent += text.charAt(i);
+setTimeout(() => typeWriter(text, i + 1), 25);
+}
+}
+</script>
+
+</body>
+</html>
